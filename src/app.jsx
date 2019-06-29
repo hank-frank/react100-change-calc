@@ -18,7 +18,8 @@ class App extends Component {
       pennies: ""
     }
     this.onChange = this.onChange.bind(this)
-    this.handleClick = this.handleClick.bind(this)
+    // this.handleClick = this.handleClick.bind(this)
+    this.calculate = this.calculate.bind(this)
   }
 
   onChange(e) {
@@ -63,7 +64,7 @@ class App extends Component {
         nickels: 0, 
         pennies: 0 });
     } else {
-
+      this.setState({alert: "card text-center alert alert-success rounded",})
     if (changeDue > 19) {
       let twenties = Math.floor(changeDue /20);
       myArray.push(twenties);
@@ -147,22 +148,22 @@ class App extends Component {
   }
   }
 
-  handleClick(e) {
-    let result = this.calculate();
-    // console.log(result);
-    // console.log(typeof result)
-    this.setState({
-      alert: "card text-center alert alert-success rounded",
-      // twenties: result[0],
-      // tens: result[1],
-      // fives: result[2],
-      // ones: result[3],
-      // quarters: result[4],
-      // dimes: result[5],
-      // nickels: result[6],
-      // pennies: result[7],
-    });
-  }
+  // handleClick(e) {
+  //   let result = this.calculate();
+  //   // console.log(result);
+  //   // console.log(typeof result)
+  //   this.setState({
+  //     alert: "card text-center alert alert-success rounded",
+  //     // twenties: result[0],
+  //     // tens: result[1],
+  //     // fives: result[2],
+  //     // ones: result[3],
+  //     // quarters: result[4],
+  //     // dimes: result[5],
+  //     // nickels: result[6],
+  //     // pennies: result[7],
+  //   });
+  // }
 
 
   render() {
@@ -218,7 +219,9 @@ class App extends Component {
           id="calculate"
           name="calculate"
           className="btn btn-block btn-primary rounded"
-          onClick={ this.handleClick }
+          onClick={() => this.calculate()}
+          // {() => this.calculate()}
+          // { this.handleClick }
           >Calculate</button>
         </div>
         </div>
