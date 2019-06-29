@@ -27,19 +27,16 @@ class App extends Component {
   }
 
   calculate(amountDue, amountReceived){
-    console.log("calculate")
     let myArray = [];
 
     amountDue = this.state.amountDue;
-    console.log(amountDue);
     amountReceived = this.state.amountReceived;
     let changeDue = (amountReceived - amountDue).toFixed(2);
-    console.log(changeDue);
-    this.setState ({
-      changeDue: `The total change due is $${changeDue}`
-    })
-    // myArray.push(changeDue);
-    if(!this.state.amountDue || !this.state.amountReceived) { //if/elseif/else is here to auto-set the alert. 
+
+    this.setState({
+      changeDue: `The total change due is $${changeDue}`,});
+  
+    if(!this.state.amountDue || !this.state.amountReceived) {  
       this.setState({
         alert: "card text-center alert alert-danger rounded",
         changeDue: 'Please make sure you entered an Amount Due and an Amount Received',
@@ -51,6 +48,7 @@ class App extends Component {
         dimes: 0, 
         nickels: 0, 
         pennies: 0 });
+
     } else if(amountReceived < amountDue) {
       this.setState({
         alert: "card text-center alert alert-danger rounded",
@@ -63,108 +61,86 @@ class App extends Component {
         dimes: 0, 
         nickels: 0, 
         pennies: 0 });
-    } else {
-      this.setState({alert: "card text-center alert alert-success rounded",})
-    if (changeDue > 19) {
-      let twenties = Math.floor(changeDue /20);
-      myArray.push(twenties);
-      this.setState({twenties: twenties})
-      console.log("twenties " + twenties);
-    } else { myArray.push(0)
-      this.setState({ twenties: 0 })
-    }
 
-    let changeDueForTens = (changeDue % 20).toFixed(2);
+    } else {      
+      if (changeDue > 19) {
+        let twenties = Math.floor(changeDue /20);
+        myArray.push(twenties);
+        console.log("twenties " + twenties);
+      } else { myArray.push(0)}
+      
+      let changeDueForTens = (changeDue % 20).toFixed(2);
 
-    if (changeDueForTens > 9) {
-      let tens = Math.floor(changeDueForTens /10);
-      myArray.push(tens);
-      this.setState({tens: tens})
-      console.log("tens " + tens);
-    }else { myArray.push(0)
-      this.setState({tens: 0})}
+      if (changeDueForTens > 9) {
+        let tens = Math.floor(changeDueForTens /10);
+        myArray.push(tens);
+        console.log("tens " + tens);
+        }else { myArray.push(0)}
 
-    let changeDueForFives = (changeDueForTens % 10).toFixed(2);
+      let changeDueForFives = (changeDueForTens % 10).toFixed(2);
 
-    if (changeDueForFives > 4) {
-      let fives = Math.floor(changeDueForFives /5);
-      myArray.push(fives);
-      this.setState({fives: fives})
-      console.log("fives " + fives);
-    }else { myArray.push(0)
-      this.setState({fives: 0})}
+      if (changeDueForFives > 4) {
+        let fives = Math.floor(changeDueForFives /5);
+        myArray.push(fives);
+        console.log("fives " + fives);
+      }else { myArray.push(0)}
 
-    let changeDueForOnes = (changeDueForFives % 5).toFixed(2);
+      let changeDueForOnes = (changeDueForFives % 5).toFixed(2);
 
-    if (changeDueForOnes > 1) {
-      let ones = Math.floor(changeDueForOnes);
-      myArray.push(ones);
-      this.setState({ones: ones})
-      console.log("ones " + ones);
-    }else { myArray.push(0)
-      this.setState({ones: 0})}
+      if (changeDueForOnes > 1) {
+        let ones = Math.floor(changeDueForOnes);
+        myArray.push(ones);
+        console.log("ones " + ones);
+        }else { myArray.push(0)}
 
-    let decimal = changeDue - Math.floor(changeDue).toFixed(2);
+      let decimal = changeDue - Math.floor(changeDue).toFixed(2);
 
-    if(decimal > .24) {
-      var quarters = Math.floor(decimal /.25);
-      myArray.push(quarters);
-      this.setState({quarters: quarters})
-      console.log("quarters " + quarters);
-    }else { myArray.push(0)
-      this.setState({quarters: 0})}
+      if(decimal > .24) {
+        var quarters = Math.floor(decimal /.25);
+        myArray.push(quarters);
+        console.log("quarters " + quarters);
+      }else { myArray.push(0)}
 
-      let decimalForDimes = (decimal % .25).toFixed(2);
+        let decimalForDimes = (decimal % .25).toFixed(2);
 
-    if(decimalForDimes > .09) {
-      var dimes = Math.floor(decimalForDimes /.10);
-      myArray.push(dimes);
-      this.setState({dimes: dimes})
-      console.log("dimes " + dimes);
-    }else { myArray.push(0)
-      this.setState({dimes: 0})}
+      if(decimalForDimes > .09) {
+        var dimes = Math.floor(decimalForDimes /.10);
+        myArray.push(dimes);
+        console.log("dimes " + dimes);
+      }else { myArray.push(0)}
 
-      let decimalForNickels = (decimalForDimes % .10).toFixed(2);
+        let decimalForNickels = (decimalForDimes % .10).toFixed(2);
 
-    if(decimalForNickels > .04) {
-      var nickels = Math.floor(decimalForNickels /.05);
-      myArray.push(nickels);
-      this.setState({nickels: nickels})
-      console.log("nickels " + nickels);
-    }else { myArray.push(0)
-      this.setState({nickels: 0})}
+      if(decimalForNickels > .04) {
+        var nickels = Math.floor(decimalForNickels /.05);
+        myArray.push(nickels);
+        console.log("nickels " + nickels);
+      }else { myArray.push(0)}
 
-        let decimalForPennies = (decimalForNickels % .05).toFixed(2);
+          let decimalForPennies = (decimalForNickels % .05).toFixed(2);
 
-    if(decimalForPennies > .01) {
-      var pennies = Math.floor(decimalForPennies /.01);
-      myArray.push(pennies);
-      this.setState({pennies: pennies})
-      console.log("pennies " + tens);
-    }else { myArray.push(0)
-      this.setState({pennies: 0})}
-    
-    return myArray; 
+      if(decimalForPennies > .01) {
+        var pennies = Math.floor(decimalForPennies /.01);
+        myArray.push(pennies);
+        console.log("pennies " + pennies);
+      }else { myArray.push(0)}
+  
+console.log(myArray);
+
+this.setState({
+  // changeDue: `The total change due is $${changeDue}`,
+  twenties: myArray[0],
+  tens: myArray[1],
+  fives: myArray[2],
+  ones: myArray[3],
+  quarters: myArray[4],
+  dimes: myArray[5],
+  nickels: myArray[6],
+  pennies: myArray[7],
+  alert: "card text-center alert alert-success rounded",
+    }); 
   }
-  }
-
-  // handleClick(e) {
-  //   let result = this.calculate();
-  //   // console.log(result);
-  //   // console.log(typeof result)
-  //   this.setState({
-  //     alert: "card text-center alert alert-success rounded",
-  //     // twenties: result[0],
-  //     // tens: result[1],
-  //     // fives: result[2],
-  //     // ones: result[3],
-  //     // quarters: result[4],
-  //     // dimes: result[5],
-  //     // nickels: result[6],
-  //     // pennies: result[7],
-  //   });
-  // }
-
+}
 
   render() {
     return(
@@ -220,8 +196,6 @@ class App extends Component {
           name="calculate"
           className="btn btn-block btn-primary rounded"
           onClick={() => this.calculate()}
-          // {() => this.calculate()}
-          // { this.handleClick }
           >Calculate</button>
         </div>
         </div>
@@ -233,24 +207,24 @@ class App extends Component {
         </div>
      
         <div className="row w-100 h-50">
-          <div className="card mx-3 my-2 px-2 py-4 text-center col-sm bg-light rounded">Twenties<br/>
-          { this.state.twenties }</div>
-          <div className="card mx-3 my-2 px-2 py-4 text-center col-sm bg-light rounded">Tens<br/>
-          { this.state.tens }</div>
-          <div className="card mx-3 my-2 px-2 py-4 text-center col-sm bg-light rounded">Fives<br/>
-          { this.state.fives }</div>
-          <div className="card mx-3 my-2 px-2 py-4 text-center col-sm bg-light rounded">Ones<br/>
-          { this.state.ones }</div>
+          <div className="card mx-3 my-2 px-2 py-4 text-center col-sm bg-light rounded">Twenties
+          <p className="change">{ this.state.twenties }</p></div>
+          <div className="card mx-3 my-2 px-2 py-4 text-center col-sm bg-light rounded">Tens
+          <p className="change">{ this.state.tens }</p></div>
+          <div className="card mx-3 my-2 px-2 py-4 text-center col-sm bg-light rounded">Fives
+          <p className="change">{ this.state.fives }</p></div>
+          <div className="card mx-3 my-2 px-2 py-4 text-center col-sm bg-light rounded">Ones
+          <p className="change">{ this.state.ones }</p></div>
         </div>
         <div className="row w-100 h-50 pb-2">
-          <div className="card mx-3 my-2 px-2 py-4 text-center col-sm bg-light rounded">Quarters<br/>
-          { this.state.quarters }</div>
-          <div className="card mx-3 my-2 px-2 py-4 text-center col-sm bg-light rounded">Dimes<br/>
-          { this.state.dimes }</div>
-          <div className="card mx-3 my-2 px-2 py-4 text-center col-sm bg-light rounded">Nickles<br/>
-          { this.state.nickels }</div>
-          <div className="card mx-3 my-2 px-2 py-4 text-center col-sm bg-light rounded">Pennies<br/>
-          { this.state.pennies }</div>
+          <div className="card mx-3 my-2 px-2 py-4 text-center col-sm bg-light rounded">Quarters
+          <p className="change">{ this.state.quarters }</p></div>
+          <div className="card mx-3 my-2 px-2 py-4 text-center col-sm bg-light rounded">Dimes
+          <p className="change">{ this.state.dimes }</p></div>
+          <div className="card mx-3 my-2 px-2 py-4 text-center col-sm bg-light rounded">Nickels
+          <p className="change">{ this.state.nickels }</p></div>
+          <div className="card mx-3 my-2 px-2 py-4 text-center col-sm bg-light rounded">Pennies
+          <p className="change">{ this.state.pennies }</p></div>
         </div>
       </div>
       </div>
