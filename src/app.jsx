@@ -18,7 +18,6 @@ class App extends Component {
       pennies: ""
     }
     this.onChange = this.onChange.bind(this)
-    // this.handleClick = this.handleClick.bind(this)
     this.calculate = this.calculate.bind(this)
   }
 
@@ -125,22 +124,19 @@ class App extends Component {
         console.log("pennies " + pennies);
       }else { myArray.push(0)}
   
-console.log(myArray);
-
-this.setState({
-  // changeDue: `The total change due is $${changeDue}`,
-  twenties: myArray[0],
-  tens: myArray[1],
-  fives: myArray[2],
-  ones: myArray[3],
-  quarters: myArray[4],
-  dimes: myArray[5],
-  nickels: myArray[6],
-  pennies: myArray[7],
-  alert: "card text-center alert alert-success rounded",
-    }); 
-  }
-}
+    this.setState({
+      twenties: myArray[0],
+      tens: myArray[1],
+      fives: myArray[2],
+      ones: myArray[3],
+      quarters: myArray[4],
+      dimes: myArray[5],
+      nickels: myArray[6],
+      pennies: myArray[7],
+      alert: "card text-center alert alert-success rounded",
+        }); 
+      }
+    }
 
   render() {
     return(
@@ -205,7 +201,6 @@ this.setState({
           <div className="row w-100">
         <div id="changeDue" name="changeDue" className={ this.state.alert }>{ this.state.changeDue }</div>
         </div>
-     
         <div className="row w-100 h-50">
           <div className="card mx-3 my-2 px-2 py-4 text-center col-sm bg-light rounded">Twenties
           <p className="change">{ this.state.twenties }</p></div>
